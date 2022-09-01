@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catálogo de Empleados Rosa Icela Contreras Ocampo", "Catálogo de Empleados Rosa Icela Contreras Ocampo\Catálogo de Empleados Rosa Icela Contreras Ocampo.csproj", "{64F8B624-A7CE-4F93-9F9E-649F024FA6D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catálogo de Empleados_Rosa Icela Contreras Ocampo", "Catálogo de Empleados Rosa Icela Contreras Ocampo\Catálogo de Empleados_Rosa Icela Contreras Ocampo.csproj", "{64F8B624-A7CE-4F93-9F9E-649F024FA6D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

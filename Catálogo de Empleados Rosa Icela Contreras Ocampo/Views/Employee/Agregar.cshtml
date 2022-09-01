@@ -1,0 +1,279 @@
+﻿@*@model Catálogo_de_Empleados_Rosa_Icela_Contreras_Ocampo.Models.EmployeeViewModel
+
+<div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tituloModal">Nuevo empleado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <style>
+                    .row {
+                        margin-top: 2rem;
+                    }
+                </style>
+
+                @using (Html.BeginForm("Add", "Employee", FormMethod.Post))
+                {
+
+                    <div class="row">
+                        <div class="col-12">
+                            @Html.LabelFor(m => m.Name)<br />
+                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", style = "max-width:40%" })
+                        </div>
+                        <div class="col-12">
+                            @Html.LabelFor(m => m.LastName)<br />
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", style = "max-width:40%" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            @Html.LabelFor(m => m.RFC)<br />
+                            @Html.TextBoxFor(m => m.RFC, new { @class = "form-control", style = "max-width:20%" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            @Html.LabelFor(m => m.Email)<br />
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", style = "max-width:40%%" })
+                        </div>
+                        <div class="col-12">
+                            @Html.LabelFor(m => m.PhoneNumber)<br />
+                            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", style = "max-width:10%" })
+                        </div>
+                    </div><div class="row">
+                        <div class="col-12" style="text-align:right">
+                            <input type="submit" value="Guardar" class="btn btn-primary" />
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@model Catálogo_de_Empleados_Rosa_Icela_Contreras_Ocampo.Models.EmployeeViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .row {
+        margin-top: 2rem;
+    }
+</style>
+
+<h2>Catálogo de empleados</h2>
+
+<div class="row">
+    <div class="col-12" style="text-align:right">
+        <a class="btn btn-primary" data-toggle="modal" href="#modalAgregar">Agregar</a>
+    </div>
+</div>
+
+<br />
+
+<div class="row">
+    <div class="col-12">
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha de Creación </th>
+                    <th>Nombre Completo</th>
+                    <th>RFC</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Eliminado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.datos)
+                {
+                    <tr>
+                        <div class="row d-flex justify-content-center">
+                        <td class="text-center">@item.Id</td>
+
+        </div>
+        <div align="center">
+            <td class="text-center">@item.CreationDate.Value.ToShortDateString()</td>
+        </div>
+        <div align="center">
+            <td class="text-center">@item.Name @item.LastName </td>
+        </div>
+        <div align="center">
+            <td class="text-center">@item.RFC</td>
+        </div>
+        <div align="center">
+            <td class="text-center">@item.Email</td>
+        </div>
+        <div align="center">
+            <td class="text-center">@item.PhoneNumber</td>
+        </div>
+        <td class="text-center">
+            @if (item.IsDeleted == true)
+            {
+                <div align="center">
+                    <img src="../../icons/checked_checkbox_50px.png" height="15" width="15" />
+                </div>
+            }
+        </td>
+        <td>
+            <a href="~/rco_Contacto/Buscar/@item.Id" class="btn "><img src="../../icons/eye_50px.png" height="20" width="20" /></a>
+            <a href="~/rco_Contacto/Editar/@item.Id" class="btn "><img src="../../icons/edit_row2_50px.png" height="20" width="20" /></a>
+            <a href="~/rco_Contacto/BajaLogica/@item.Id" class="btn "><img src="../../icons/trash_50px.png" height="15" width="15" /></a>
+        </td>
+        </tr>
+    }
+
+                </tbody>
+                </table>
+            </div>
+            </div>
+
+            @* Modal para agregar nuevo empleado *@
+            <div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true" style="display:none">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" href="~/Employee/ToIndex" class="close" data-bs-dismiss="modal" aria-hidden="true">x</button>
+                            <h5 class="modal-title" id="tituloModal">Nuevo empleado</h5>
+                        </div>
+                        <div class="modal-body">
+                            <h2>Nuevo empleado</h2>
+                            <br />
+                            <br />
+                            @using (Html.BeginForm("Add", "Employee", FormMethod.Post))
+                            {
+
+                                <form class="row g-3">
+
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(m => m.Name, "*Nombre")
+                                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(m => m.LastName, "*Apellidos")<br />
+                                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                                        <br /><br />
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(m => m.Birthday, "*Fecha de Nacimiento")<br />
+                                        <input type="date" id="birthdaytime" name="birthdaytime" height="300" width="2222">
+                                        <br /><br />
+                                    </div>
+
+
+                                    <div class="col-md-4">
+                                        <label for="inputState" class="form-label">State</label>
+                                        <select id="inputState" class="form-select">
+                                            <option selected>Choose...</option>
+                                            <option>...</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Open this select menu</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                    </div>
+
+
+
+
+
+
+
+                                </form>
+
+
+
+
+
+
+
+                                @*<form class="row g-3">
+
+                                        <div class="media-left">
+                                            <div class="col-12">
+                                                @Html.LabelFor(m => m.Name)<br />
+                                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", style = "max-width:60%" })
+                                            </div>
+                                        </div>
+                                        <div class="media-left">
+                                            <div class="col-12">
+                                                @Html.LabelFor(m => m.LastName)<br />
+                                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", style = "max-width:60%" })
+                                            </div>
+                                        </div>
+
+                                        <div class="media-left">
+                                            <div class="col-12">
+                                                @Html.LabelFor(m => m.RFC)<br />
+                                                @Html.TextBoxFor(m => m.RFC, new { @class = "form-control", style = "max-width:20%" })
+                                            </div>
+                                        </div>
+
+                                        <div class="media-left">
+                                            <div class="col-12">
+                                                @Html.LabelFor(m => m.Email)<br />
+                                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", style = "max-width:40%" })
+                                            </div>
+                                            <div class="col-12">
+                                                @Html.LabelFor(m => m.PhoneNumber)<br />
+                                                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", style = "max-width:10%" })
+                                            </div>
+                                        </div>
+                                    </form>*@
+                            }
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="media-right" style="text-align:right">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+

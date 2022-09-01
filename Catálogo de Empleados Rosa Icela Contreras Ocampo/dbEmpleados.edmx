@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_ITSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EmployeesRosa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Birthday" Type="datetime" />
+          <Property Name="RFC" Type="nvarchar" MaxLength="13" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="10" />
+          <Property Name="PositionId" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="PositionsRosa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <Association Name="FK_PositionsRosa_EmployeesRosa">
+          <End Role="PositionsRosa" Type="Self.PositionsRosa" Multiplicity="0..1" />
+          <End Role="EmployeesRosa" Type="Self.EmployeesRosa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PositionsRosa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeesRosa">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_ITSModelStoreContainer">
+          <EntitySet Name="EmployeesRosa" EntityType="Self.EmployeesRosa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PositionsRosa" EntityType="Self.PositionsRosa" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PositionsRosa_EmployeesRosa" Association="Self.FK_PositionsRosa_EmployeesRosa">
+            <End Role="PositionsRosa" EntitySet="PositionsRosa" />
+            <End Role="EmployeesRosa" EntitySet="EmployeesRosa" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_ITSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EmployeesRosa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="3" />
+          <Property Name="RFC" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PositionId" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="PositionsRosa" Relationship="Self.FK_PositionsRosa_EmployeesRosa" FromRole="EmployeesRosa" ToRole="PositionsRosa" />
+        </EntityType>
+        <EntityType Name="PositionsRosa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EmployeesRosa" Relationship="Self.FK_PositionsRosa_EmployeesRosa" FromRole="PositionsRosa" ToRole="EmployeesRosa" />
+        </EntityType>
+        <Association Name="FK_PositionsRosa_EmployeesRosa">
+          <End Role="PositionsRosa" Type="Self.PositionsRosa" Multiplicity="0..1" />
+          <End Role="EmployeesRosa" Type="Self.EmployeesRosa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PositionsRosa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeesRosa">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_ITSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EmployeesRosa" EntityType="Self.EmployeesRosa" />
+          <EntitySet Name="PositionsRosa" EntityType="Self.PositionsRosa" />
+          <AssociationSet Name="FK_PositionsRosa_EmployeesRosa" Association="Self.FK_PositionsRosa_EmployeesRosa">
+            <End Role="PositionsRosa" EntitySet="PositionsRosa" />
+            <End Role="EmployeesRosa" EntitySet="EmployeesRosa" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_ITSModelStoreContainer" CdmEntityContainer="DB_ITSEntities">
+          <EntitySetMapping Name="EmployeesRosa">
+            <EntityTypeMapping TypeName="DB_ITSModel.EmployeesRosa">
+              <MappingFragment StoreEntitySet="EmployeesRosa">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PositionsRosa">
+            <EntityTypeMapping TypeName="DB_ITSModel.PositionsRosa">
+              <MappingFragment StoreEntitySet="PositionsRosa">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

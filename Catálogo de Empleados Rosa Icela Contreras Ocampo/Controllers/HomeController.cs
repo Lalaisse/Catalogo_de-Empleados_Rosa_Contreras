@@ -16,7 +16,8 @@ namespace Catálogo_de_Empleados_Rosa_Icela_Contreras_Ocampo.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
+            ViewBag.Nombre = "Rosa Icela Contreras Ocampo";
+            //ViewBag envía datos a una vista sin utilizar un modelo
             return View();
         }
 
