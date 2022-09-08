@@ -99,12 +99,27 @@ namespace Catálogo_de_Empleados_Rosa_Icela_Contreras_Ocampo.Controllers
                 Email = model.Employee.Email,
                 PhoneNumber = model.Employee.PhoneNumber,
                 PositionId = model.Employee.PositionId
+
         };
             //Invoca el método modificar
             EmployeeService.Modificar(employee);
             return RedirectToAction("Index");
         }
 
+        [HttpPost, ActionName("BajaLogica")]
+        public ActionResult BajaLogica(int idEmployee)
+        {
+            EmployeeService.BajaLogica(idEmployee);
+            return RedirectToAction("Index");
+        }
 
-    }
+        [HttpPost, ActionName("AltaLogica")]
+        //[HttpPost]
+        public ActionResult AltaLogica(int idEmployee)
+        {
+            EmployeeService.AltaLogica(idEmployee);
+            return RedirectToAction("Index");
+        }
+    }  
+
 }

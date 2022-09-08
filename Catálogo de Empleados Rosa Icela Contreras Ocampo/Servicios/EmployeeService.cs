@@ -98,19 +98,51 @@ namespace Catálogo_de_Empleados_Rosa_Icela_Contreras_Ocampo.Servicios
         /// Método para actualizar en la base de datos una baja lógica
         /// </summary>
         /// <param name="contacto"></param>
-        public static void BajaLogica(EmployeesRosa employee)
+        public static void BajaLogica(int id)
         {
             try
             {
+                var employee = new EmployeesRosa
+                {
+                    Id = id,
+                    IsDeleted = true
+                };
+
                 using (var db = new DB_ITSEntities())
                 {
-                    db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
+                    db.EmployeesRosa.Attach(employee);
+                    db.Entry(employee).Property("IsDeleted").IsModified = true;
                     db.SaveChanges();
                 }
+
             }
             catch (Exception)
             {
-                Console.WriteLine("Ocurrió un error al intenntar modificar un empleado");
+                Console.WriteLine("Ocurrió un error al intentar deshabilitar un empleado");
+            }
+        }
+
+        public static void AltaLogica(int id)
+        {
+            try
+            {
+                var employee = new EmployeesRosa
+                {
+                    Id = id,
+                    IsDeleted = false
+                };
+
+                using (var db = new DB_ITSEntities())
+                {
+                    db.EmployeesRosa.Attach(employee);
+                    db.Entry(employee).Property("IsDeleted").IsModified = true;
+                    db.SaveChanges();
+                }
+
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Ocurrió un error al intentar deshabilitar un empleado");
             }
         }
 

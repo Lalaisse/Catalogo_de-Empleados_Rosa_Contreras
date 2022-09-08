@@ -10,6 +10,7 @@ namespace Catálogo_de_Empleados_Rosa_Icela_Contreras_Ocampo.Models
     {
         public EmployeesRosa Employee { get; set; }
         //public EmployeeViewModel EmployeeViewModel { get; set; }
+        public int EmployeeId { get; set; }
         public List<EmployeesRosa> datos { get; set; }
         public IEnumerable<SelectListItem> ListPositions{ get; set; }
     }

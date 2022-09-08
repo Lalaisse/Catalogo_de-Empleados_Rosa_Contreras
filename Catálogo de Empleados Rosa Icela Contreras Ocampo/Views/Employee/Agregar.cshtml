@@ -1,63 +1,63 @@
 ﻿@*@model Catálogo_de_Empleados_Rosa_Icela_Contreras_Ocampo.Models.EmployeeViewModel
 
-<div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="tituloModal">Nuevo empleado</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
+    <div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tituloModal">Nuevo empleado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
 
-                <style>
-                    .row {
-                        margin-top: 2rem;
+                    <style>
+                        .row {
+                            margin-top: 2rem;
+                        }
+                    </style>
+
+                    @using (Html.BeginForm("Add", "Employee", FormMethod.Post))
+                    {
+
+                        <div class="row">
+                            <div class="col-12">
+                                @Html.LabelFor(m => m.Name)<br />
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", style = "max-width:40%" })
+                            </div>
+                            <div class="col-12">
+                                @Html.LabelFor(m => m.LastName)<br />
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", style = "max-width:40%" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                @Html.LabelFor(m => m.RFC)<br />
+                                @Html.TextBoxFor(m => m.RFC, new { @class = "form-control", style = "max-width:20%" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                @Html.LabelFor(m => m.Email)<br />
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", style = "max-width:40%%" })
+                            </div>
+                            <div class="col-12">
+                                @Html.LabelFor(m => m.PhoneNumber)<br />
+                                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", style = "max-width:10%" })
+                            </div>
+                        </div><div class="row">
+                            <div class="col-12" style="text-align:right">
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                            </div>
+                        </div>
                     }
-                </style>
-
-                @using (Html.BeginForm("Add", "Employee", FormMethod.Post))
-                {
-
-                    <div class="row">
-                        <div class="col-12">
-                            @Html.LabelFor(m => m.Name)<br />
-                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", style = "max-width:40%" })
-                        </div>
-                        <div class="col-12">
-                            @Html.LabelFor(m => m.LastName)<br />
-                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", style = "max-width:40%" })
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12">
-                            @Html.LabelFor(m => m.RFC)<br />
-                            @Html.TextBoxFor(m => m.RFC, new { @class = "form-control", style = "max-width:20%" })
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12">
-                            @Html.LabelFor(m => m.Email)<br />
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", style = "max-width:40%%" })
-                        </div>
-                        <div class="col-12">
-                            @Html.LabelFor(m => m.PhoneNumber)<br />
-                            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", style = "max-width:10%" })
-                        </div>
-                    </div><div class="row">
-                        <div class="col-12" style="text-align:right">
-                            <input type="submit" value="Guardar" class="btn btn-primary" />
-                        </div>
-                    </div>
-                }
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Guardar</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Guardar</button>
+                </div>
             </div>
         </div>
-    </div>
-</div>*@
+    </div>*@
 
 
 
@@ -268,12 +268,5 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
 
 
